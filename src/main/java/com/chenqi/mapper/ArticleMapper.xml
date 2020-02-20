@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+	
+	<mapper namespace="com.chenqi.mapper.ArticleMapper">
+		<select id="findlist" resultType="Article">
+			select id,title,content,created,updated from cms_article
+			<where>
+				<if test="p1 !=null and p1 != ''">
+					and created >=#{p1}
+				</if>
+				<if test="p2 !=null and p2 != ''">
+					and created &lt;= #{p2}
+				</if>
+				<if test="id !=null">
+					and id =#{id}
+				</if>
+				<if test="updated !=null">
+					and updated =#{updated}
+				</if>
+			</where>
+		</select>
+	
+	</mapper>
+
